@@ -32,7 +32,7 @@ yum -y install mariadb-server mariadb
 systemctl start mariadb.service
 systemctl enable mariadb.service
 # Download secure expect from limitless.media
-# curl -o secure.exp http://limitless.media/assets/installer/server/secure.exp
+curl -o secure.exp https://raw.githubusercontent.com/anotherawesomeprojects/centos-7-installer/main/secure.exp
 chmod a+x ./secure.exp
 echo "----Do Exepect mysql secure installation!!---------------------"$'\r'$'\r'
 expect ./secure.exp $mysql_pass
@@ -55,7 +55,7 @@ echo "----Apache and PHP Installed---------------------"$'\r'$'\r'
 
 echo "----setup IP---------------------"$'\r'$'\r'
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
-curl -o /etc/httpd/conf/httpd.conf http://limitless.media/assets/installer/server/httpd_centos7.conf
+curl -o /etc/httpd/conf/httpd.conf https://raw.githubusercontent.com/anotherawesomeprojects/centos-7-installer/main/httpd_centos7.conf
 sed -i "s/ServerName www.example.com:80/ServerName $ip:80/g" /etc/httpd/conf/httpd.conf
 echo "----IP SET!!---------------------"$'\r'$'\r'
 
@@ -68,7 +68,7 @@ echo "----MySQL Support Installed!!---------------------"$'\r'$'\r'
 echo "----Setup phpMyAdmin!!--------------------"$'\r'$'\r'
 yum install phpMyAdmin -y
 mv /etc/httpd/conf.d/phpmyadmin.conf /etc/httpd/conf.d/phpmyadmin.conf.bak
-curl -o /etc/httpd/conf.d/phpmyadmin.conf http://limitless.media/assets/installer/server/phpMyAdmin_centos7.conf
+curl -o /etc/httpd/conf.d/phpmyadmin.conf https://raw.githubusercontent.com/anotherawesomeprojects/centos-7-installer/main/phpMyAdmin_centos7.conf
 sed -i "s/cookie/http/g" /usr/share/phpmyadmin/config.inc.php
 systemctl restart  httpd.service
 echo "----phpMyAdmin Installed!!---------------------"$'\r'$'\r'
@@ -82,7 +82,7 @@ yum --enablerepo=epel -y install sshpass
 echo "----install lynx!!---------------------"$'\r'$'\r'
 yum install lynx -y
 echo "----install CLI!!---------------------"$'\r'$'\r'
-curl -O http://limitless.media/assets/installer/server/wp-cli.phar
+curl -O https://github.com/anotherawesomeprojects/centos-7-installer/raw/main/wp-cli.phar
 chmod +x wp-cli.phar
 sudo sh -c 'mv wp-cli.phar /usr/local/bin/wp'
 
